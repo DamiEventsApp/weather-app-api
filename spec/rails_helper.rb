@@ -7,6 +7,8 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 require 'database_cleaner'
 
 # [...]
@@ -50,6 +52,7 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.include FactoryBot::Syntax::Methods
+  config.include RequestSpecHelper
 
   # start by truncating all the tables but then use the faster transaction strategy the rest of the time.
   config.before(:suite) do
