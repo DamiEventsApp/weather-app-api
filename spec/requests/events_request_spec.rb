@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "Events API", type: :request do
   let!(:events) { create_list(:event, 15)}
   let!(:event) { events.first}
+  let(:user) { event.user }
 
   describe 'GET /events do' do
     before { get '/events' }
@@ -17,9 +18,8 @@ RSpec.describe "Events API", type: :request do
   end
 
   describe 'PUT /events/:id do' do
-    
     context "when the record exists" do
-      before { put "/events/#{event.id}", params: {event: attributes_for(:event)} }
+      before { put "/events/#{event.id}", params: {event: attributes_for(:event)}, headers: valid_request_header }
 
       it 'it should return status of 204' do
         expect(response).to have_http_status(204)
@@ -27,7 +27,7 @@ RSpec.describe "Events API", type: :request do
     end
 
     context 'when the record is invalid' do
-      before { put "/events/#{500}", params: {event: attributes_for(:event)} }
+      before { put "/events/#{500}", params: {event: attributes_for(:event)}, headers: valid_request_header }
 
       it 'should raise an exception' do
         expect(response.body).to match(/Couldn't find Event/)
@@ -39,7 +39,7 @@ RSpec.describe "Events API", type: :request do
   describe 'DELETE /events/:id do' do
     
     context "when the record exists" do
-      before { delete "/events/#{event.id}" }
+      before { delete "/events/#{event.id}", headers: valid_request_header }
 
       it 'it should return status of 204' do
         expect(response).to have_http_status(204)
@@ -47,7 +47,7 @@ RSpec.describe "Events API", type: :request do
     end
 
     context 'when the record is invalid' do
-      before { delete "/events/#{500}"}
+      before { delete "/events/#{500}", headers: valid_request_header }
 
       it 'should raise an exception' do
         expect(response.body).to match(/Couldn't find Event/)
@@ -59,7 +59,7 @@ RSpec.describe "Events API", type: :request do
   describe 'POST /events do' do
     
     context "with valid parameters" do
-      before { post "/events/", params: {event: attributes_for(:event)} }
+      before { post "/events/", params: {event: attributes_for(:event)}, headers: valid_request_header }
 
       it 'it should return status of 200' do
         expect(response).to have_http_status(201)
@@ -67,7 +67,7 @@ RSpec.describe "Events API", type: :request do
     end
 
     context 'with invalid parameters' do
-      before { post "/events", params: {event: { title: "Some title" }}}
+      before { post "/events", params: {event: { title: "Some title" }}, headers: valid_request_header }
 
       it 'should raise an exception' do
         expect(response.body).to match(/Validation failed: Date can't be blank/)

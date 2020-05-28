@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  skip_before_action :authorize_api_request, only: %i[ index ]
   before_action :set_event, only: %i[ update destroy ]
 
   def index
@@ -6,7 +7,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    event = Event.create!(event_params)  
+    event = @current_user.events.create!(event_params)  
     json_response(event, :created)
   end
 
@@ -23,7 +24,7 @@ class EventsController < ApplicationController
   private
 
   def set_event
-    @event = Event.find_by!(id: params[:id])
+    @event = @current_user.events.find_by!(id: params[:id])
   end
 
   def event_params
