@@ -9,7 +9,7 @@ RSpec.describe 'Search API', type: :request do
 
     # returns auth token and user object when request is valid
     context 'result exists' do
-      before { post "/search_events", params: {search_term: title}, headers: valid_request_header }
+      before { get "/search_events", params: {search_term: title}, headers: valid_request_header }
       
       it 'returns the results' do
         expect(json['events']).not_to be_empty
@@ -22,7 +22,7 @@ RSpec.describe 'Search API', type: :request do
 
     # handles invalid credentials
     context 'when there are no results' do
-      before { post "/search_events", params: {search_term: "nullnullnull"}, headers: valid_request_header }
+      before { get "/search_events", params: {search_term: "nullnullnull"}, headers: valid_request_header }
 
       it 'it returns no results' do
         expect(json['events']).to be_empty
