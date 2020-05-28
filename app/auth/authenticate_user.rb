@@ -5,9 +5,10 @@ class AuthenticateUser
   end
 
   def call
-    {
-      user: user
-    }
+    result = HashWithIndifferentAccess.new
+    result[:user] = user
+    result[:auth_token] = JsonWebToken.encode({user_id: user.id})
+    result
   end
 
   private
