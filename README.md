@@ -13,10 +13,10 @@ It provides CRUD functionality for events
 - Factory Bot Rails
 
 ## Docs
-* [Models](doc/models)
-* [Auth](doc/auth)
-* [Controllers](doc/controllers)
-* [API Endpoints](doc/endpoints)
+* [Models](doc/MODELS)
+* [Auth](doc/AUTH)
+* [Controllers](doc/CONTROLLERS)
+* [API Endpoints](doc/ENDPOINTS)
 
 ## Live Demo
 
