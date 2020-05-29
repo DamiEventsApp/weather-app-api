@@ -28,9 +28,9 @@ RSpec.describe 'Search API', type: :request do
       context 'when search date is provided' do
         before do
           params = attributes_for(:event)
-          params[:date] =  4.days.ago.to_i 
+          params[:date] =  Date.yesterday
           user.events.create!(params) 
-          get "/search_events", {params: {date: 4.days.ago.to_i}, headers: valid_request_header} 
+          get "/search_events", {params: {date: Date.yesterday}, headers: valid_request_header} 
         end
 
         it 'should search by date alone' do
