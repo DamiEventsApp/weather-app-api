@@ -9,8 +9,9 @@ There are 4 endpointsavailable controllers that intercept and handle requests:
 
 ### POST `/events`
 #### Required Parameters
-* `email`(string)
+* `title`(string)
 * `date`(string)
+* `location`(string)
 
 ### PUT `/events/:id`
 #### Required Parameters
