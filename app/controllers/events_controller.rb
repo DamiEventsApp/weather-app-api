@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[ update destroy ]
 
   def index
-    paginate Event.all, per_page: 15
+    paginate Event.all, per_page: 5
   end
 
   def create
