@@ -81,7 +81,7 @@ RSpec.describe "Events API", type: :request do
   describe 'POST /events do' do
     
     context "with valid parameters" do
-      before { post "/events/", params: attributes_for(:event), headers: valid_request_header }
+      before { post "/events", params: attributes_for(:event), headers: valid_request_header }
 
       it 'it should return status of 200' do
         expect(response).to have_http_status(201)

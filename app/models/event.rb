@@ -5,9 +5,9 @@ class Event < ApplicationRecord
   }
 
   include PgSearch::Model
-  pg_search_scope :search_by_title_or_location, against: [:title]
+  pg_search_scope :search_by_title_or_location, against: [:title, :location]
   pg_search_scope :search_by_date, against: [:date]
-  validates :title, :date, presence: true
+  validates :title, :date, :location, presence: true
   belongs_to :user
   
 end
