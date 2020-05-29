@@ -8,8 +8,30 @@ RSpec.describe "Events API", type: :request do
   describe 'GET /events do' do
     before { get '/events' }
 
-    it 'should return the first 15 events' do
+    it 'should return the first 5 events' do
       expect(json["events"].size).to eq(5)
+    end
+
+    it 'should return pagination controls' do
+      expect(json['meta']).not_to be_empty
+    end
+  end
+
+  describe 'GET /todays_events do' do
+    before do
+      event_params = attributes_for(:event)
+      event_params[:date] = Time.now.to_i 
+      1.times { user.events.create!(event_params) }
+      event_params[:date] = 2.days.from_now.to_i 
+      5.times { user.events.create!(event_params) } 
+    end
+
+    before {
+      get '/todays_events', {params: {today: true}, headers: valid_request_header }
+    }
+
+    it 'should return only events from today' do
+      expect(json["events"].size).to eq(1)
     end
 
     it 'should return pagination controls' do
