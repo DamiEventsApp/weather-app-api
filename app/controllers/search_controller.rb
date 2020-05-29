@@ -15,6 +15,6 @@ class SearchController < ApplicationController
 
   private 
   def query
-    params[:term] || params[:date].to_i
+    params[:term] || params[:date].to_s
   end
 end

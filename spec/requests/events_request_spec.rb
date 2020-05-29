@@ -20,9 +20,9 @@ RSpec.describe "Events API", type: :request do
   describe 'GET /todays_events do' do
     before do
       event_params = attributes_for(:event)
-      event_params[:date] = Time.now.to_i 
+      event_params[:date] = Date.today.to_s 
       1.times { user.events.create!(event_params) }
-      event_params[:date] = 2.days.from_now.to_i 
+      event_params[:date] = Date.yesterday 
       5.times { user.events.create!(event_params) } 
     end
 

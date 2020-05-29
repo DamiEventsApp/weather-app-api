@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :event do
     user
     title { Faker::Book.title }
-    date { 3.days.from_now.to_i }
+    date { Faker::Date.forward(days: 12) }
   end
 end
