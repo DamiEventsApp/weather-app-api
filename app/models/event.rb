@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  default_scope { order(date: :desc) }
+  scope :fresh, -> { order(date: :desc) }
   scope :today, -> {
     where("date > ? AND date < ?", 1.day.ago.to_i, 1.day.from_now.to_i)
   }
