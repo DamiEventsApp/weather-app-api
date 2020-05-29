@@ -6,7 +6,7 @@ class EventsController < ApplicationController
     if params[:today]
       paginate Event.fresh.today, per_page: 5
     else
-      paginate Event.fresh, per_page: 5
+      paginate Event.unscoped.fresh, per_page: 5
     end
   end
 
