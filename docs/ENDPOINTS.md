@@ -10,7 +10,7 @@ There are 4 endpointsavailable controllers that intercept and handle requests:
 ### POST `/events`
 #### Required Parameters
 * `email`(string)
-* `date`(int)
+* `date`(string)
 
 ### PUT `/events/:id`
 #### Required Parameters
@@ -27,8 +27,8 @@ There are 4 endpointsavailable controllers that intercept and handle requests:
 
 ### GET `/search_events`
 #### Required Parameters
-* `date`(int)
-* `term`(int)
+* `date`(string)
+* `term`(string)
 * This endpoint requires either one of the to listed above. Date must be formatted as `Epoch Timestamp` *
 
 * GET `/todays_events`
