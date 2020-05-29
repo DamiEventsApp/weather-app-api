@@ -9,7 +9,7 @@ RSpec.describe "Events API", type: :request do
     before { get '/events' }
 
     it 'should return the first 15 events' do
-      expect(json["events"].size).to eq(15)
+      expect(json["events"].size).to eq(5)
     end
 
     it 'should return pagination controls' do
@@ -19,7 +19,7 @@ RSpec.describe "Events API", type: :request do
 
   describe 'PUT /events/:id do' do
     context "when the record exists" do
-      before { put "/events/#{event.id}", params: {event: attributes_for(:event)}, headers: valid_request_header }
+      before { put "/events/#{event.id}", params: attributes_for(:event), headers: valid_request_header }
 
       it 'it should return status of 204' do
         expect(response).to have_http_status(204)
@@ -27,7 +27,7 @@ RSpec.describe "Events API", type: :request do
     end
 
     context 'when the record is invalid' do
-      before { put "/events/#{500}", params: {event: attributes_for(:event)}, headers: valid_request_header }
+      before { put "/events/#{500}", params: attributes_for(:event), headers: valid_request_header }
 
       it 'should raise an exception' do
         expect(response.body).to match(/Couldn't find Event/)
@@ -59,7 +59,7 @@ RSpec.describe "Events API", type: :request do
   describe 'POST /events do' do
     
     context "with valid parameters" do
-      before { post "/events/", params: {event: attributes_for(:event)}, headers: valid_request_header }
+      before { post "/events/", params: attributes_for(:event), headers: valid_request_header }
 
       it 'it should return status of 200' do
         expect(response).to have_http_status(201)
@@ -67,7 +67,7 @@ RSpec.describe "Events API", type: :request do
     end
 
     context 'with invalid parameters' do
-      before { post "/events", params: {event: { title: "Some title" }}, headers: valid_request_header }
+      before { post "/events", params: { title: "Some title" }, headers: valid_request_header }
 
       it 'should raise an exception' do
         expect(response.body).to match(/Validation failed: Date can't be blank/)
