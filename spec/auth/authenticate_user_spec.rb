@@ -8,8 +8,7 @@ RSpec.describe AuthenticateUser do
   context 'with valid credentials' do
     it 'should return a valid user object' do
       result = valid_request_object.call
-      expect(result[:user])
-        .to eq(user)
+      expect(result[:user].size).to eq(3)
     end
   end
 

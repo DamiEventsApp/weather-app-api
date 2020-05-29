@@ -6,7 +6,7 @@ class AuthenticateUser
 
   def call
     result = HashWithIndifferentAccess.new
-    result[:user] = user
+    result[:user] = {email: user[:email], name: user[:name], user_id: user[:id]}
     result[:auth_token] = JsonWebToken.encode({user_id: user.id})
     result
   end
