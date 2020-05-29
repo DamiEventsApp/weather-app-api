@@ -5,7 +5,7 @@ user = User.create!(name: "John Doe", email: "john@doe.com", password: "guestuse
 40.times do |times|
     params = { 
       title: Faker::Book.title ,
-      date: Time.now.to_i * (times * times),
+      date: Faker::Time.forward(days: times).to_i,
       user: user
     }
     Event.create!(params)

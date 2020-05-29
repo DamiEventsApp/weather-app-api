@@ -3,6 +3,10 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[ update destroy ]
 
   def index
+    if params[:today]
+      paginate Event.today, per_page: 5
+      return
+    end
     paginate Event.all, per_page: 5
   end
 
