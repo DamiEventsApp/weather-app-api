@@ -36,6 +36,6 @@ There are 4 endpointsavailable controllers that intercept and handle requests:
 * `today`(bool)
 
 These endpoints are fully tested and can be verified using by running the `requests` test suite:
-* Setup as described [here]()
+* Setup as described [here](../README.md)
 * `cd` into the project directory(you should be here if you setup correctly)
 * run `rspec spec/requests`
