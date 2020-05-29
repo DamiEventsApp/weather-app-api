@@ -6,8 +6,11 @@ class SearchController < ApplicationController
     end
 
     if params[:date]
-      paginate Event.search_by_date, per_page: 15
+      paginate Event.search_by_date(query), per_page: 15
+      return
     end
+
+    raise(ExceptionHandler::ParameterError, "Parameter Error: Missing search term or date")
   end
 
   private 
