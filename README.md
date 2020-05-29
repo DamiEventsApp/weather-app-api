@@ -20,7 +20,7 @@ It provides CRUD functionality for events
 
 ## Live Demo
 
-[Live Demo]()
+[Live Demo](http://eventweatherapp.herokuapp.com/events)
 
 ## Getting Started
 
