@@ -6,7 +6,7 @@ user = User.create!(name: "John Doe", email: "john@doe.com", password: "guestuse
     params = { 
       title: Faker::Book.title ,
       date: Faker::Date.forward(days: times),
-      Faker::Movies::StarWars.planet
+      Faker::Movies::StarWars.planet,
       user: user
     }
     Event.create!(params)
